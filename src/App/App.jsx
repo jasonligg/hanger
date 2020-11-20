@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
+import ClosetContainer from './containers/ClosetContainer';
 
 const App = () => {
   // return <h1>Hello Jordan!</h1>;
@@ -10,8 +11,8 @@ const App = () => {
       <div className="App">
         <Nav />
         <Switch>
-          {/* <Route path="/" exact component={Home} /> */}
-          {/* <Route path="/closet" component={Closet} /> */}
+          {/* <Route path="/" exact component={Landing} /> */}
+          <Route path="/closet" component={ClosetContainer} />
           {/* <Route path="/donation" component={Donation} /> */}
         </Switch>
       </div>
