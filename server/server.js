@@ -14,16 +14,21 @@ app.use(bodyParser.json());
 //app.use('?', express.static(path.resolve(__dirname, ?)))
 
 //handle get requests to home page//
-app.get('/', fileController.getClothes, (req,res, next) => {
-    res.sendFile(path.resolve(__dirname, '../index.html'), function (err) {
-        if (err) {
-            next(err)
-        } else {
-            console.log('data sent!');
-        }
-    })
-})
 
+// Jason: the following code does not need to invoke the getClothes middleware
+// the .get to '/' should just return the index.html page when the server
+// is in production mode. commenting this code out for now
+// for development mode, this server is just an api to our database
+
+// app.get('/', fileController.getClothes, (req,res, next) => {
+//     res.sendFile(path.resolve(__dirname, '../index.html'), function (err) {
+//         if (err) {
+//             next(err)
+//         } else {
+//             console.log('data sent!');
+//         }
+//     })
+// })
 
 app.use('/closet', closetRouter);
 
