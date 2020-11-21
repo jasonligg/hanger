@@ -20,7 +20,14 @@ const TableDisplay = ({ entries }) => {
 
   return (
     <div className="TableDisplay">
-      <div className="columnTitles"></div>
+      <div className="columnTitles">
+        <span>Item</span>
+        <span>Type</span>
+        <span>Color</span>
+        <span>Image</span>
+        <span>Active/Donate</span>
+        <span>Worn</span>
+      </div>
       <div className="rows">{rows}</div>
     </div>
   );
