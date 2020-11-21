@@ -4,9 +4,6 @@ import InputDisplay from '../components/InputDisplay';
 import TableDisplay from '../components/TableDisplay';
 
 const ClosetContainer = () => {
-  // declare an initialState object
-  // set state with react hooks
-
   // invoke useEffect and make a fetch request to our backend endpoint
   // to retrieve the table data and store it in state. this useEffect
   // should only trigger once (and not each time the page re-renders
@@ -22,24 +19,26 @@ const ClosetContainer = () => {
   // to re-fetch the latest data from the backend, which will then update
   // and re-render the TableDisplay component
 
-  const initialState = {
-    tableData: [],
-  };
-  const [closet, setCloset] = useState(initialState);
+  const [closet, setCloset] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/')
-      .then((data) => data.json())
-      .then((parseData) => {
-        setCloset({ ...closet, tableData: parseData });
-      });
+    fetch('/api')
+      .then((response) => response.json())
+      .then((data) => {
+        setCloset(data);
+        setHasLoaded(true);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
-  return (
+  return hasLoaded ? (
     <div className="ClosetContainer">
       <InputDisplay />
-      {/* <TableDisplay /> */}
+      <TableDisplay tableData={closet} />
     </div>
+  ) : (
+    <div className="ClosetContainer">Still loading...</div>
   );
 };
 

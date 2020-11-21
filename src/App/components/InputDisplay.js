@@ -20,7 +20,8 @@ const InputDisplay = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/closet', {
+      // console.log(JSON.stringify(userInput));
+      const response = await fetch('/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ const InputDisplay = () => {
           body: data,
         }
       );
-      const { url } = response.json();
+      const { url } = await response.json();
       setUserInput({ ...userInput, itemImage: url });
       setLoading(false);
     } catch (error) {

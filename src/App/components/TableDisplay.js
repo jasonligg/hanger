@@ -2,21 +2,25 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Row from './Row';
 
-const TableDisplay = ({ entries }) => {
+const TableDisplay = ({ tableData }) => {
+  console.log(tableData);
   const rows = [];
-  for (let i = 0; i < entries.length; i++) {
+  for (let i = 0; i < tableData.length; i++) {
+    console.log(tableData[i]);
     rows.push(
       <Row
         key={`Row-${i}`}
         id={`Row-${i}`}
-        item={entries[i].item}
-        type={entries[i].type}
-        color={entries[i].color}
-        image={entries[i].image}
+        item={tableData[i].itemname}
+        type={tableData[i].itemclothingtype}
+        color={tableData[i].itemcolor}
+        image={tableData[i].itemimage}
       />
       // potential last prop is the active/donate status for the article of clothing
     );
   }
+
+  console.log(rows);
 
   return (
     <div className="TableDisplay">

@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 //     })
 // })
 
-app.use('/closet', closetRouter);
+app.use('/api', closetRouter);
 
 /**
  * configire express global error handler
