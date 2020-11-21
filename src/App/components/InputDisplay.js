@@ -18,6 +18,24 @@ const InputDisplay = () => {
   const [userInput, setUserInput] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/closet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInput),
+      });
+      setLoading(false);
+      setUserInput(initialState);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   const handleImageUpload = async (event) => {
     const [file] = event.target.files;
     const data = new FormData();
@@ -37,6 +55,7 @@ const InputDisplay = () => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -57,7 +76,9 @@ const InputDisplay = () => {
           setUserInput({ ...userInput, itemName: event.target.value })
         }
       />
-      <button type="button">Submit</button>
+      <button type="button" onClick={handleSubmit}>
+        Submit
+      </button>
       <div className="dropDowns">
         <h3>Select Color</h3>
         <select
