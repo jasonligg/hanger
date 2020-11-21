@@ -1,0 +1,33 @@
+body {
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo {
+  width: 80%;
+  height: 80%;
+}
+
+#navButton {
+  width: 7rem;
+  height: 3rem;
+  text-decoration: none;
+  border-radius: 25px;
+}
+
+.Nav {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-decoration: none;
+}
