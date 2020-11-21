@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // when updating state, we are putting into the userInput state object
 // key-value pairs. the four pairs are:
@@ -12,16 +11,52 @@ const InputDisplay = () => {
     itemName: '',
     itemClothingType: 'Tops/Shirts/Tees',
     itemColor: 'Black',
-    itemImage: null,
+    itemImage:
+      'https://res.cloudinary.com/dfu8r9blo/image/upload/v1605922447/HangerImages/no_uploaded_cu28uy.png',
   };
   const [userInput, setUserInput] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
-  const handleImageUpload = (event) => {
-    const [file] = event.target.files;
-    if (file) {
-      console.log(file);
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/closet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInput),
+      });
+      setLoading(false);
+      setUserInput(initialState);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
-  }
+  };
+
+  const handleImageUpload = async (event) => {
+    const [file] = event.target.files;
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'hanger');
+    setLoading(true);
+    try {
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/dfu8r9blo/image/upload',
+        {
+          method: 'POST',
+          body: data,
+        }
+      );
+      const { url } = response.json();
+      setUserInput({ ...userInput, itemImage: url });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="InputDisplay">
@@ -40,7 +75,9 @@ const InputDisplay = () => {
           setUserInput({ ...userInput, itemName: event.target.value })
         }
       />
-      <button type="button">Submit</button>
+      <button type="button" onClick={handleSubmit}>
+        Submit
+      </button>
       <div className="dropDowns">
         <h3>Select Color</h3>
         <select
