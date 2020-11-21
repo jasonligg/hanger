@@ -35,11 +35,7 @@ const ClosetContainer = () => {
   return hasLoaded ? (
     <div className="ClosetContainer">
       <InputDisplay />
-<<<<<<< HEAD
       <TableDisplay tableData={closet} />
-=======
-      {/* <TableDisplay /> */}
->>>>>>> 6b368d17c618f7c3a63f0dd8492508f743d55c88
     </div>
   ) : (
     <div className="ClosetContainer">Still loading...</div>
