@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // when updating state, we are putting into the userInput state object
 // key-value pairs. the four pairs are:
