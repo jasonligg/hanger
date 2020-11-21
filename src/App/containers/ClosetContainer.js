@@ -38,7 +38,7 @@ const ClosetContainer = () => {
   return (
     <div className="ClosetContainer">
       <InputDisplay />
-      <TableDisplay />
+      {/* <TableDisplay /> */}
     </div>
   );
 };
