@@ -12,16 +12,33 @@ const InputDisplay = () => {
     itemName: '',
     itemClothingType: 'Tops/Shirts/Tees',
     itemColor: 'Black',
-    itemImage: null,
+    itemImage:
+      'https://res.cloudinary.com/dfu8r9blo/image/upload/v1605922447/HangerImages/no_uploaded_cu28uy.png',
   };
   const [userInput, setUserInput] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const [file] = event.target.files;
-    if (file) {
-      console.log(file);
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'hanger');
+    setLoading(true);
+    try {
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/dfu8r9blo/image/upload',
+        {
+          method: 'POST',
+          body: data,
+        }
+      );
+      const { url } = response.json();
+      setUserInput({ ...userInput, itemImage: url });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="InputDisplay">
