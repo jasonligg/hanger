@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Row from './Row';
 
 const TableDisplay = ({ tableData }) => {
