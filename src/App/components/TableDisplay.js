@@ -29,7 +29,7 @@ const TableDisplay = ({ tableData }) => {
         <span>Color</span>
         <span>Image</span>
         <span>Active/Donate</span>
-        <span>Worn</span>
+        {/* <span>Worn</span> */}
       </div>
       <div className="rows">{rows}</div>
     </div>

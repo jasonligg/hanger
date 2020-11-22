@@ -11,8 +11,11 @@ const Landing = () => {
   return (
     <div className="main">
       <img id="logo" src="./src/Images/HangerLogo.png" alt="hangerLogo" />
-
-      <NavLink to="/closet">View Closet</NavLink>
+      <button id="viewCloset">
+        <NavLink to="/closet">
+          <span id="viewCloset">View Closet</span>
+        </NavLink>
+      </button>
     </div>
   );
 };

@@ -1,4 +1,10 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
+.InputDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main {
@@ -17,17 +23,116 @@ body {
   width: 7rem;
   height: 3rem;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
 .Nav {
   list-style-type: none;
-  text-decoration: none;
+  font-family: 'Rye', cursive;
 }
 
 .navBar {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.inputBox {
+  display: flex;
+  width: 7rem;
+}
+
+.dropDowns {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  margin-top: 1rem;
+}
+
+#Textlogo {
+  width: 50%;
+  height: 50%;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rowImage {
+  width: 2rem;
+}
+
+.inputConsole {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+p,
+h3 {
+  font-family: 'Rye', cursive;
+  margin-right: 0.5rem;
+}
+
+a {
   text-decoration: none;
+  color: black;
+}
+
+.Nav {
+  color: black;
+  font-size: 2rem;
+}
+
+a span:hover {
+  color: #e8a832;
+}
+
+#viewCloset {
+  border-radius: 3px;
+  font-family: 'Rye', cursive;
+  background-color: white;
+  font-size: 3rem;
+}
+
+#viewCloset:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+#viewCloset:active {
+  background-color: white;
+  transform: scale(0.99);
+}
+
+#addtoCloset {
+  font-size: 3rem;
+}
+.color {
+  height: 1.2rem;
+}
+.clothingType {
+  height: 1.2rem;
+}
+
+.columnTitles {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 5rem;
+}
+#uploadImage {
+  margin-right: 22rem;
 }
