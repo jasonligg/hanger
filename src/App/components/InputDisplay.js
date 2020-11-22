@@ -61,24 +61,27 @@ const InputDisplay = () => {
 
   return (
     <div className="InputDisplay">
-      <p>Add to Closet</p>
-      <p>Upload Image</p>
-      <input
-        id="upload-file"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        multiple="false"
-      />
-      <input
-        type="text"
-        onChange={(event) =>
-          setUserInput({ ...userInput, itemName: event.target.value })
-        }
-      />
-      <button type="button" onClick={handleSubmit}>
-        Submit
-      </button>
+      <p id="addtoCloset">Add to Closet</p>
+      <p id="uploadImage">Upload Image</p>
+      <div className="inputConsole">
+        <input
+          id="upload-file"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          multiple="false"
+        />
+        <input
+          type="text"
+          onChange={(event) =>
+            setUserInput({ ...userInput, itemName: event.target.value })
+          }
+        />
+        <button id="closetButton" type="button" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
+
       <div className="dropDowns">
         <h3>Select Color</h3>
         <select
