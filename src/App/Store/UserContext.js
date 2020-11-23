@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useState } from 'react';
 
-export const UserContext = createContext(null);
+export const UserContext = createContext();
 
-const Store = ({ children }) => {
+const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
   return (
     <UserContext.Provider value={[user, setUser]}>
       {children}
@@ -11,4 +13,4 @@ const Store = ({ children }) => {
   );
 };
 
-export default Store;
+export default UserContextProvider;
