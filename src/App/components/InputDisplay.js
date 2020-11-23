@@ -20,7 +20,8 @@ const InputDisplay = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/closet', {
+      // console.log(JSON.stringify(userInput));
+      const response = await fetch('/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ const InputDisplay = () => {
           body: data,
         }
       );
-      const { url } = response.json();
+      const { url } = await response.json();
       setUserInput({ ...userInput, itemImage: url });
       setLoading(false);
     } catch (error) {
@@ -60,24 +61,27 @@ const InputDisplay = () => {
 
   return (
     <div className="InputDisplay">
-      <p>Add to Closet</p>
-      <p>Upload Image</p>
-      <input
-        id="upload-file"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        multiple="false"
-      />
-      <input
-        type="text"
-        onChange={(event) =>
-          setUserInput({ ...userInput, itemName: event.target.value })
-        }
-      />
-      <button type="button" onClick={handleSubmit}>
-        Submit
-      </button>
+      <p id="addtoCloset">Add to Closet</p>
+      <p id="uploadImage">Upload Image</p>
+      <div className="inputConsole">
+        <input
+          id="upload-file"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          multiple="false"
+        />
+        <input
+          type="text"
+          onChange={(event) =>
+            setUserInput({ ...userInput, itemName: event.target.value })
+          }
+        />
+        <button id="closetButton" type="button" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
+
       <div className="dropDowns">
         <h3>Select Color</h3>
         <select
