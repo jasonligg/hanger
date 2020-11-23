@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import style from './static/style.css';
-// eslint-disable-next-line import/extensions
-import App from './App.jsx';
+import { render } from 'react-dom';
 
-ReactDOM.render(<App name="I am app!" />, document.getElementById('app'));
+import App from './App';
+
+render(<App name="I am app!" />, document.getElementById('app'));
