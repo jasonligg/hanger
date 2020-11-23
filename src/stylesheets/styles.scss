@@ -1,4 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+html {
+  margin: 0;
+}
+body {
+  margin: 0;
+}
+
+#temp {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}
+.dashboard {
+  background-color: burlywood;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 10% 90%;
+  grid-template-areas:
+    'nav nav nav nav'
+    'profile closet closet closet';
+}
+
+.user-container {
+  background-color: #e8a832;
+  grid-area: profile;
+  margin: 16px;
+}
+
+.closet-container {
+  background-color: aquamarine;
+  grid-area: closet;
+  margin: 16px;
+}
+
+.nav {
+  background-color: bisque;
+  grid-area: nav;
+  margin: 16px 16px 0 16px;
+}
 
 .InputDisplay {
   display: flex;

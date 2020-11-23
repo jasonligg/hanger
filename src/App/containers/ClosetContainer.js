@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // //#region commentzz
-
 // import { BrowserRouter as Router, Route, Link, Switch }
 //  from 'react-router-dom';
-// import InputDisplay from '../components/InputDisplay';
-// import TableDisplay from '../components/TableDisplay';
+import InputDisplay from '../components/InputDisplay';
+import TableDisplay from '../components/TableDisplay';
 //  //#endregion
 
 const ClosetContainer = () => {
@@ -25,31 +24,28 @@ const ClosetContainer = () => {
   // to re-fetch the latest data from the backend, which will then update
   // and re-render the TableDisplay component
 
-  // const [closet, setCloset] = useState([]);
-  // const [hasLoaded, setHasLoaded] = useState(false);
+  const [closet, setCloset] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
-  // useEffect(() => {
-  //   fetch('/api')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCloset(data);
-  //       setHasLoaded(true);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    fetch('/api')
+      .then((response) => response.json())
+      .then((data) => {
+        setCloset(data);
+        setHasLoaded(true);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  // return hasLoaded ? (
-  //   <div className="ClosetContainer">
-  //     <InputDisplay />
-  //     <TableDisplay tableData={closet} />
-  //   </div>
-  // ) : (
-  //   <div className="ClosetContainer">Still loading...</div>
-  // );
-  //  #endregion
-  return (
+  return hasLoaded ? (
     <div className="closet-container">
       <h1>CLOSET CONTAINER HERE</h1>
+      <InputDisplay />
+      <TableDisplay tableData={closet} />
+    </div>
+  ) : (
+    <div className="closet-container">
+      <p>Still loading...</p>
     </div>
   );
 };

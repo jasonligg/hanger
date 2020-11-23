@@ -1,30 +1,34 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
+
 import Dashboard from './containers/Dashboard';
 import Login from './components/Login';
 
 import '../stylesheets/styles.scss';
 
+export const UserContext = createContext(null);
+
 const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setUser({
-        id: 781,
-        username: 'mggower',
-        firstName: 'Michael',
-        lastName: 'Gower',
-        nickName: 'Mikey',
-        gender: 'Male',
-        age: 27,
-        birthday: {
-          day: 23,
-          month: 2,
-          year: 1993,
-        },
-      });
-    }, 5000);
+    setUser({
+      id: 781,
+      username: 'mggower',
+      firstName: 'Michael',
+      lastName: 'Gower',
+      nickName: 'Mikey',
+      gender: 'Male',
+      location: 'Massachusetts',
+      interests: 'LOVES CHARITY AND FASHUN',
+      age: 27,
+      birthday: {
+        day: 23,
+        month: 2,
+        year: 1993,
+      },
+    });
+
     return () => {
       console.log('unmounted APP');
     };
@@ -32,7 +36,9 @@ const App = () => {
 
   return user ? (
     <div className="App">
-      <Dashboard />
+      <UserContext.Provider value={[user, setUser]}>
+        <Dashboard />
+      </UserContext.Provider>
     </div>
   ) : (
     <div className="login">
