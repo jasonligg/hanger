@@ -9,7 +9,7 @@ const router = express.Router();
 // should handle getting all items from the database
 
 // CLOSET ROUTES:
-router.get('/', closetController.getClothes, (req, res) => {
+router.get('/:id', closetController.getClothes, (req, res) => {
   res.json(res.locals.clothes);
 });
 

@@ -27,9 +27,9 @@ import Closet from '../components/Closet';
 const ClosetContainer = () => {
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
-
+  const num = 12;
   useEffect(() => {
-    fetch('/api')
+    fetch(`/api/${num}`)
       .then((response) => response.json())
       .then((data) => {
         setCloset(data);
@@ -41,7 +41,7 @@ const ClosetContainer = () => {
   return hasLoaded ? (
     <div className="content-container">
       <Router>
-        <div className='content-nav'>
+        <div className="content-nav">
           <Link to="/closet">My Closet</Link>
           <Link to="/newitem">Add Item</Link>
         </div>
