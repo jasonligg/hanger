@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { ClosetContext } from '../Store/ClosetContext';
 import NewItem from '../components/NewItem';
-import TableDisplay from '../components/TableDisplay';
+import Closet from '../components/Closet';
 
 //  #region useEffect && fetch() comments
 /*
@@ -27,7 +27,7 @@ import TableDisplay from '../components/TableDisplay';
 const ClosetContainer = () => {
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
- 
+
   useEffect(() => {
     fetch('/api')
       .then((response) => response.json())
@@ -40,6 +40,7 @@ const ClosetContainer = () => {
 
   return hasLoaded ? (
     <div className="content-container">
+      <h1>Closet Container</h1>
       <Router>
         <div>
           <Link to="/closet">My Closet</Link>
@@ -51,7 +52,7 @@ const ClosetContainer = () => {
             <NewItem />
           </Route>
           <Route path="/closet">
-            <TableDisplay tableData={closet} />
+            <Closet tableData={closet} />
           </Route>
           <Route path="/">
             <div>

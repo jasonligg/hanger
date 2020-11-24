@@ -1,18 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 html {
   margin: 0;
 }
 body {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 #temp {
   width: 200px;
   height: 200px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
   background-color: pink;
+  border: 2px solid black;
 }
 .dashboard {
-  background-color: burlywood;
+  background-color: rgba(240, 240, 240, 1);
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -23,25 +31,48 @@ body {
 }
 
 .user-container {
-  background-color: #e8a832;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
   grid-area: profile;
   margin: 16px;
 }
 
 .content-container {
-  background-color: aquamarine;
+  background-color: rgba(0, 0, 0, 0.25);
   grid-area: closet;
   margin: 16px;
+  overflow-y: scroll;
 }
 
 .nav {
-  background-color: bisque;
+  background-color: rgba(0, 0, 0, 0.25);
   grid-area: nav;
   margin: 16px 16px 0 16px;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
+}
+.closet {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+
+.item-card {
+  width: 250px;
+  height: 350px;
+  border: 2px solid black;
+  background-color: rgb(196, 255, 137);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
 }
 
 .InputDisplay {
@@ -72,7 +103,7 @@ body {
 
 .Nav {
   list-style-type: none;
-  font-family: 'Rye', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navBar {
@@ -125,7 +156,7 @@ body {
 }
 p,
 h3 {
-  font-family: 'Rye', cursive;
+  font-family: 'Roboto', sans-serif;
   margin-right: 0.5rem;
 }
 
@@ -145,7 +176,7 @@ a span:hover {
 
 #viewCloset {
   border-radius: 3px;
-  font-family: 'Rye', cursive;
+  font-family: 'Roboto', sans-serif;
   background-color: white;
   font-size: 3rem;
 }
