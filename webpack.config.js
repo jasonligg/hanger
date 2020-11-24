@@ -37,9 +37,6 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  // performance: {
-  //   hints: false,
-  // },
 };
 
 module.exports = config;
