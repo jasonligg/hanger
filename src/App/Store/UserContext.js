@@ -3,8 +3,24 @@ import React, { createContext, useState } from 'react';
 
 export const UserContext = createContext();
 
-const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({
+    id: 781,
+    username: 'mggower',
+    firstName: 'Michael',
+    lastName: 'Gower',
+    nickName: 'Mikey',
+    gender: 'Male',
+    city: 'Lowell',
+    state: 'Massachusetts',
+    interests: 'LOVES CHARITY AND FASHUN',
+    age: 27,
+    birthday: {
+      day: 23,
+      month: 2,
+      year: 1993,
+    },
+  });
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -13,4 +29,4 @@ const UserContextProvider = ({ children }) => {
   );
 };
 
-export default UserContextProvider;
+export default UserProvider;

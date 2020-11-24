@@ -9,7 +9,7 @@ import {
   useParams,
   useRouteMatch,
 } from 'react-router-dom';
-import InputDisplay from '../components/InputDisplay';
+import NewItem from '../components/NewItem';
 import TableDisplay from '../components/TableDisplay';
 //  //#endregion
 
@@ -20,13 +20,13 @@ const ClosetContainer = () => {
   // should only trigger once (and not each time the page re-renders
   // (a la componentDidMount))
 
-  // inputDisplay does not need any props passed down to it
+  // NewItem does not need any props passed down to it
   // pass down the appropriate props to the tableDisplay component
 
   // not sure on this part...
-  // create a custom hook (useFetch) to pass down as a prop to InputDisplay
+  // create a custom hook (useFetch) to pass down as a prop to NewItem
   // (EDIT: or maybe define in separate file and import)
-  // this will allow InputDisplay to trigger the useEffect hook in here
+  // this will allow NewItem to trigger the useEffect hook in here
   // to re-fetch the latest data from the backend, which will then update
   // and re-render the TableDisplay component
   const [closet, setCloset] = useState([]);
@@ -41,7 +41,7 @@ const ClosetContainer = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-  // console.log(url);
+
   return hasLoaded ? (
     <div className="content-container">
       <Router>
@@ -52,13 +52,15 @@ const ClosetContainer = () => {
 
         <Switch>
           <Route path="/newitem">
-            <InputDisplay />
+            <NewItem />
           </Route>
           <Route path="/closet">
             <TableDisplay tableData={closet} />
           </Route>
-          <Route path='/'>
-            <div><h1>HANGER</h1></div>
+          <Route path="/">
+            <div>
+              <h1>HANGER</h1>
+            </div>
           </Route>
         </Switch>
       </Router>
