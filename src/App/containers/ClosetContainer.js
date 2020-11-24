@@ -40,9 +40,8 @@ const ClosetContainer = () => {
 
   return hasLoaded ? (
     <div className="content-container">
-      <h1>Closet Container</h1>
       <Router>
-        <div>
+        <div className='content-nav'>
           <Link to="/closet">My Closet</Link>
           <Link to="/newitem">Add Item</Link>
         </div>
@@ -63,7 +62,7 @@ const ClosetContainer = () => {
       </Router>
     </div>
   ) : (
-    <div className="closet-container">
+    <div className="content-container">
       <p>Still loading...</p>
     </div>
   );
