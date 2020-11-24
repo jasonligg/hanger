@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 // //#region commentzz
-// import { BrowserRouter as Router, Route, Link, Switch }
-//  from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  useParams,
+  useRouteMatch,
+} from 'react-router-dom';
 import InputDisplay from '../components/InputDisplay';
 import TableDisplay from '../components/TableDisplay';
 //  //#endregion
@@ -23,7 +29,6 @@ const ClosetContainer = () => {
   // this will allow InputDisplay to trigger the useEffect hook in here
   // to re-fetch the latest data from the backend, which will then update
   // and re-render the TableDisplay component
-
   const [closet, setCloset] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -36,12 +41,27 @@ const ClosetContainer = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-
+  // console.log(url);
   return hasLoaded ? (
-    <div className="closet-container">
-      <h1>CLOSET CONTAINER HERE</h1>
-      <InputDisplay />
-      <TableDisplay tableData={closet} />
+    <div className="content-container">
+      <Router>
+        <div>
+          <Link to="/closet">My Closet</Link>
+          <Link to="/newitem">Add Item</Link>
+        </div>
+
+        <Switch>
+          <Route path="/newitem">
+            <InputDisplay />
+          </Route>
+          <Route path="/closet">
+            <TableDisplay tableData={closet} />
+          </Route>
+          <Route path='/'>
+            <div><h1>HANGER</h1></div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   ) : (
     <div className="closet-container">

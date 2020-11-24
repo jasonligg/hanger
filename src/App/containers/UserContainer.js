@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 import { UserContext } from '../App';
 
 const UserContainer = () => {
@@ -10,6 +12,8 @@ const UserContainer = () => {
       <h1>{`Hey ${nickName}!`}</h1>
       <div id="temp">
         <p>profile-pic</p>
+      </div>
+      <div className="actions">
       </div>
       <h2>Profile:</h2>
       <p>{gender}</p>

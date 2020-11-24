@@ -28,7 +28,7 @@ body {
   margin: 16px;
 }
 
-.closet-container {
+.content-container {
   background-color: aquamarine;
   grid-area: closet;
   margin: 16px;
@@ -38,6 +38,10 @@ body {
   background-color: bisque;
   grid-area: nav;
   margin: 16px 16px 0 16px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .InputDisplay {
