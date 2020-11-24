@@ -7,8 +7,6 @@ const Market = () => {
     demo.push(<ItemCard />);
   }
 
-  // const cards = demo.map((x) => <ItemCard />);
-  // console.log(rows);
   return <div className="closet">{demo}</div>;
 };
 

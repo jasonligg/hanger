@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import ItemDescribe from './ItemDescribe';
 import ItemView from './ItemView';
@@ -7,6 +7,14 @@ const ItemCard = ({ id, item }) => {
   const [visible, setVisibility] = useState(false);
   const [sticky, setSticky] = useState(false);
   const { itemimage } = item;
+
+  useEffect(() => {
+    console.log('mount');
+    return () => {
+      console.log('dismount');
+    };
+  }, []);
+
   return (
     <div
       className="item-card"
