@@ -3,13 +3,23 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const fileController = require('../fileController.js');
 const closetRouter = require('../routes/closet.js');
-const authRoutes = require('../routes/oauth-routes.js')
-const passportSetup = require('../config/passport-setup.js')
+const authRoutes = require('../routes/oauth-routes.js');
+const passportSetup = require('../config/passport-setup.js');
 let app = express();
-const keys = require("../config/keys")
-
+const keys = require("../config/keys");
+const cookieSession = require('cookie-session');
+const passport = require('passport')
 //parse request body//
 app.use(bodyParser.json());
+
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
+}))
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/auth' , authRoutes)
