@@ -1,4 +1,4 @@
-const db = require('./models/closetModels');
+const db = require('../models/closetModels');
 
 const userController = {};
 
@@ -34,6 +34,7 @@ userController.addUser = async (req, res, next) => {
     display_name_1,
     oauth_id,
   ];
+  // need to check first if a user with username/password already exists...?
 
   try {
     await db.query(queryStr, queryParams);
@@ -47,9 +48,32 @@ userController.addUser = async (req, res, next) => {
   }
 };
 
-// update a user's information:
-fileController.updateUser = async (req, res, next) => {
-  // find out what fields user will be able to update
+userController.userLogin = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const firstQuery =
+    'SELECT EXISTS (SELECT 1 FROM Users WHERE username = $1 AND password = $2)';
+  const queryParams = [username, password];
+
+  try {
+    const validUser = await db.query(firstQuery, queryParams);
+    // if validUser is true:
+    // query db for id belonging to username and password and return to client?
+    if (validUser) {
+      const queryString =
+        'SELECT _id FROM Users WHERE username = $1 AND password = $2';
+      const data = await db.query(queryString, queryParams);
+      res.locals._id = data.rows[0];
+      return next();
+    }
+    res.send('Invalid username or password');
+  } catch (error) {
+    return next({
+      log: `Database error`,
+      status: 502,
+      message: { err: `${error.stack}` },
+    });
+  }
 };
 
 module.exports = userController;

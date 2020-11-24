@@ -13,7 +13,7 @@ router.get('/', closetController.getClothes, (req, res) => {
   res.json(res.locals.clothes);
 });
 
-//should handle entering items into database
+//should handle entering clothing items into database
 router.post(
   '/',
   closetController.newClothingItem,
@@ -33,20 +33,27 @@ router.delete('/', closetController.deleteClothingItem, (req, res) => {
 //updates an item from the closet using the id
 router.patch('/', closetController.updateClosetItem, (req, res) => {
   res.send('happy stuff');
-  //   res.json(res.locals.clothes);
+});
+
+// get marketplace items
+router.get('/marketplace', closetController.getMarketplaceItems, (req, res) => {
+  res.json(res.locals.clothes);
+});
+
+// donation status
+router.post('/donation', closetController.donationStatusUpdate, (req, res) => {
+  res.json(res.locals.clothes);
 });
 
 // USER ROUTES:
 
-// add a new user
-router.post;
+// adds a new user to the db
+router.post('/signup', userController.addUser, (req, res) => {
+  res.send('Account signup success!');
+});
 
-// add new user
-
-// update user
-
-// get marketplace items
-
-// donation status
+router.post('/login', userController.userLogin, (req, res) => {
+  res.send('Successfully logged in');
+});
 
 module.exports = router;
