@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 //#region comments
 // when updating state, we are putting into the userInput state object
@@ -19,6 +20,11 @@ const NewItem = () => {
   };
   const [closetItem, setClosetItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  // const { register, handleSubmit } = useForm();
+
+  // const onSubmit = () => {
+
+  // }
 
   const handleSubmit = async () => {
     try {

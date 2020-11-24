@@ -1,18 +1,15 @@
 import React from 'react';
 
-import UserProvider from './Store/UserContext';
-import ClosetProvider from './Store/ClosetContext';
+import Store from './Store/Store';
 import Dashboard from './containers/Dashboard';
 
 import '../stylesheets/styles.scss';
 
 const App = () => {
   return (
-    <UserProvider>
-      <ClosetProvider>
-        <Dashboard />
-      </ClosetProvider>
-    </UserProvider>
+    <Store>
+      <Dashboard />
+    </Store>
   );
 };
 
