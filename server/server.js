@@ -6,6 +6,7 @@ const closetRouter = require('../routes/closet.js');
 const authRoutes = require('../routes/oauth-routes.js')
 const passportSetup = require('../config/passport-setup.js')
 let app = express();
+const keys = require("../config/keys")
 
 //parse request body//
 app.use(bodyParser.json());
