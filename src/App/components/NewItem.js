@@ -20,30 +20,30 @@ const NewItem = () => {
   };
   const [closetItem, setClosetItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
-  // const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data, '<---- data');
   // const onSubmit = () => {
 
   // }
 
-  const handleSubmit = async () => {
-    try {
-      setLoading(true);
-      // console.log(JSON.stringify(userInput));
-      const response = await fetch('/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(closet),
-      });
-      setLoading(false);
-      setClosetItem(initialState);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  // const handleSubmit = async () => {
+  //   try {
+  //     setLoading(true);
+  //     // console.log(JSON.stringify(userInput));
+  //     const response = await fetch('/api', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(closet),
+  //     });
+  //     setLoading(false);
+  //     setClosetItem(initialState);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleImageUpload = async (event) => {
     const [file] = event.target.files;
@@ -72,68 +72,70 @@ const NewItem = () => {
     <div className="InputDisplay">
       <p id="addtoCloset">Add to Closet</p>
       <p id="uploadImage">Upload Image</p>
-      <div className="inputConsole">
-        <input
-          id="upload-file"
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          multiple="false"
-        />
-        <input
-          type="text"
-          onChange={(event) =>
-            setClosetItem({ ...closetItem, itemName: event.target.value })
-          }
-        />
-        <button id="closetButton" type="button" onClick={handleSubmit}>
-          Submit
-        </button>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="inputConsole">
+          <input
+            id="upload-file"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            multiple="false"
+          />
+          <input
+            type="text"
+            onChange={(event) =>
+              setClosetItem({ ...closetItem, itemName: event.target.value })
+            }
+          />
+          <button id="closetButton" type="button" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
 
-      <div className="dropDowns">
-        <h3>Select Color</h3>
-        <select
-          className="color"
-          value={closetItem.itemColor}
-          onChange={(event) => {
-            setClosetItem({ ...closetItem, itemColor: event.target.value });
-          }}
-        >
-          <option value="Black">Black</option>
-          <option value="White">White</option>
-          <option value="Red">Red</option>
-          <option value="Pink">Pink</option>
-          <option value="Green">Green</option>
-          <option value="Blue">Blue</option>
-          <option value="Yellow">Yellow</option>
-          <option value="Purple">Purple</option>
-          <option value="Orange">Orange</option>
-          <option value="Brown/Tan">Brown</option>
-          <option value="Grey">Grey</option>
-        </select>
-        <h3>Select Type</h3>
-        <select
-          className="clothingType"
-          value={closetItem.itemClothingType}
-          onChange={(event) =>
-            setClosetItem({
-              ...closetItem,
-              itemClothingType: event.target.value,
-            })
-          }
-        >
-          <option value="Tops/shirts/Tees">Tops/Shirts/Tees</option>
-          <option value="Pants">Pants</option>
-          <option value="Skirts">Skirt</option>
-          <option value="Dresses">Dress</option>
-          <option value="Outerwear">Outerwear</option>
-          <option value="Swim">Swim</option>
-          <option value="Shoes">Shoes</option>
-          <option value="Hats">Hats</option>
-          <option value="Accessories">Accessories</option>
-        </select>
-      </div>
+        <div className="dropDowns">
+          <h3>Select Color</h3>
+          <select
+            className="color"
+            value={closetItem.itemColor}
+            onChange={(event) => {
+              setClosetItem({ ...closetItem, itemColor: event.target.value });
+            }}
+          >
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Red">Red</option>
+            <option value="Pink">Pink</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Purple">Purple</option>
+            <option value="Orange">Orange</option>
+            <option value="Brown/Tan">Brown</option>
+            <option value="Grey">Grey</option>
+          </select>
+          <h3>Select Type</h3>
+          <select
+            className="clothingType"
+            value={closetItem.itemClothingType}
+            onChange={(event) =>
+              setClosetItem({
+                ...closetItem,
+                itemClothingType: event.target.value,
+              })
+            }
+          >
+            <option value="Tops/shirts/Tees">Tops/Shirts/Tees</option>
+            <option value="Pants">Pants</option>
+            <option value="Skirts">Skirt</option>
+            <option value="Dresses">Dress</option>
+            <option value="Outerwear">Outerwear</option>
+            <option value="Swim">Swim</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Hats">Hats</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </div>
+      </form>
     </div>
   );
 };

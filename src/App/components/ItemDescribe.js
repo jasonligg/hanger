@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-
 import { useForm } from 'react-hook-form';
+
 import { ItemContext } from '../Store/ItemContext';
 
 const ItemDescribe = ({ item }) => {
   const [itemData, setItemData] = useContext(ItemContext);
-  const [times_worn, setTimes_worn] = useState(item.times_worn);
-  const [last_worn, setLast_worn] = useState(item.last_worn);
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
     defaultValues: item,
@@ -36,7 +34,8 @@ const ItemDescribe = ({ item }) => {
     };
   }, []);
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
+    console.log(data);
     const { itemname, itemclothingtype, itemcolor, status } = data;
     const update = {
       ...item,
@@ -44,16 +43,10 @@ const ItemDescribe = ({ item }) => {
       itemclothingtype,
       itemcolor,
       status,
-      times_worn,
       last_worn,
     };
 
     setItemData(update);
-  };
-
-  const handleWear = () => {
-    setTimes_worn(times_worn + 1);
-    setLast_worn(new Date());
   };
 
   return (
@@ -70,12 +63,7 @@ const ItemDescribe = ({ item }) => {
           max="10"
           step="10"
         />
-        <input
-          type="button"
-          name="timesworn"
-          ref={register}
-          onClick={handleWear}
-        />
+        <input type="date" ref={register} name="last_worn" />
       </form>
     </div>
   );
