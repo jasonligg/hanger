@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const Nav = () => {
+  //#region old
   return (
-    <div className="navBar">
-      <Link to="/home">
+    <div className="nav">
+      <Link to="/">
         <li className="Nav">
           <span>Home</span>
         </li>
@@ -14,9 +15,14 @@ const Nav = () => {
           <span>Closet</span>
         </li>
       </Link>
-      <Link to="/donation">
+      <Link to="/marketplace">
         <li className="Nav">
-          <span>Donation</span>
+          <span>Marketplace</span>
+        </li>
+      </Link>
+      <Link to="/logout">
+        <li className="Nav">
+          <span>Logout</span>
         </li>
       </Link>
     </div>

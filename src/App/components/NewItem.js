@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
+//#region comments
 // when updating state, we are putting into the userInput state object
 // key-value pairs. the four pairs are:
 // itemName: String -> user types into texbar
 // itemClothingType: String  -> user selects from dropdown bar
 // itemColor: String -> user selects from dropdown bar
 // itemImage: File API integration -> user selects from file from device storage
-const InputDisplay = () => {
+//#endregion
+
+const NewItem = () => {
   const initialState = {
     itemName: '',
     itemClothingType: 'Tops/Shirts/Tees',
@@ -14,7 +17,7 @@ const InputDisplay = () => {
     itemImage:
       'https://res.cloudinary.com/dfu8r9blo/image/upload/v1605922447/HangerImages/no_uploaded_cu28uy.png',
   };
-  const [userInput, setUserInput] = useState(initialState);
+  const [closetItem, setClosetItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
@@ -26,10 +29,10 @@ const InputDisplay = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userInput),
+        body: JSON.stringify(closet),
       });
       setLoading(false);
-      setUserInput(initialState);
+      setClosetItem(initialState);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -51,7 +54,7 @@ const InputDisplay = () => {
         }
       );
       const { url } = await response.json();
-      setUserInput({ ...userInput, itemImage: url });
+      setClosetItem({ ...closetItem, itemImage: url });
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -74,7 +77,7 @@ const InputDisplay = () => {
         <input
           type="text"
           onChange={(event) =>
-            setUserInput({ ...userInput, itemName: event.target.value })
+            setClosetItem({ ...closetItem, itemName: event.target.value })
           }
         />
         <button id="closetButton" type="button" onClick={handleSubmit}>
@@ -86,9 +89,9 @@ const InputDisplay = () => {
         <h3>Select Color</h3>
         <select
           className="color"
-          value={userInput.itemColor}
+          value={closetItem.itemColor}
           onChange={(event) => {
-            setUserInput({ ...userInput, itemColor: event.target.value });
+            setClosetItem({ ...closetItem, itemColor: event.target.value });
           }}
         >
           <option value="Black">Black</option>
@@ -106,9 +109,12 @@ const InputDisplay = () => {
         <h3>Select Type</h3>
         <select
           className="clothingType"
-          value={userInput.itemClothingType}
+          value={closetItem.itemClothingType}
           onChange={(event) =>
-            setUserInput({ ...userInput, itemClothingType: event.target.value })
+            setClosetItem({
+              ...closetItem,
+              itemClothingType: event.target.value,
+            })
           }
         >
           <option value="Tops/shirts/Tees">Tops/Shirts/Tees</option>
@@ -126,4 +132,4 @@ const InputDisplay = () => {
   );
 };
 
-export default InputDisplay;
+export default NewItem;
