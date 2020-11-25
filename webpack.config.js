@@ -38,8 +38,8 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
   performance: {
-    hints: false
-  }
+    hints: false,
+  },
 };
 
 module.exports = config;

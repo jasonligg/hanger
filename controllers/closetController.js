@@ -44,7 +44,7 @@ closetController.newClothingItem = async (req, res, next) => {
 // retrieves all clothes from Clothes table
 closetController.getClothes = async (req, res, next) => {
   // would this be req.params??
-  const userId = req.params._id;
+  const userId = req.params.id;
   const queryStr =
     'SELECT u._id, c.* FROM Users u LEFT OUTER JOIN Closet c ON c.user_id = ($1)';
   // const queryStr = 'SELECT * FROM Closet ORDER BY _id ASC';
