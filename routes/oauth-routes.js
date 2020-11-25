@@ -13,6 +13,22 @@ router.get('/login', (req, res) => {
 
 //auth with google
 router.get(
+  '/facebook',
+  passport.authenticate('facebook', {
+    scope: ['email', 'public_profile'],
+  })
+);
+
+router.get(
+  '/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
+
+//auth with google
+router.get(
   '/google',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
