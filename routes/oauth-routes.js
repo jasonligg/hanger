@@ -13,6 +13,29 @@ router.get('/login', (req, res) => {
 
 //auth with google
 router.get(
+  '/facebook',
+  passport.authenticate('facebook', {
+    scope: ['email', 'public_profile'],
+  })
+);
+
+router.get(
+  '/facebook/callback',
+  passport.authenticate('facebook'),
+  (req, res) => {
+    // successRedirect: '/',
+    // failureRedirect: '/login',
+    // res.locals.isVerified = true;
+    const user = req.user.rows[0]._id;
+    // res.redirect(`/api/${user}`);
+    // res.json(user);
+    res.cookie('success', user);
+    res.redirect('/');
+  }
+);
+
+//auth with google
+router.get(
   '/google',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
@@ -42,9 +65,13 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // res.send(req.user)
   console.log(req.user.rows[0]._id);
   //sending our OAuth user data
+  res.locals.isVerified = true;
   const user = req.user.rows[0]._id;
   // res.redirect(`/api/${user}`);
-  res.json(user);
+  // res.json(user);
+  res.cookie('success', user);
+  res.redirect('/');
+
   //router needs to route to where we want to render
   //if the route is to a username as the endpoint, write a function that renders an html page with everything for their closet
   //make another get request to get the user information that is stored in the database
