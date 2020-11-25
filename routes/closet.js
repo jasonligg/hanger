@@ -4,8 +4,7 @@ const closetController = require('../controllers/closetController.js');
 const userController = require('../controllers/userController.js');
 const router = express.Router();
 
-// Jason: created a new GET endpoint to /closet that queries the database
-// for all entries and returns the result to the response
+//
 // should handle getting all items from the database
 
 // CLOSET ROUTES:
@@ -21,7 +20,7 @@ router.post(
   closetController.newClothingItem,
   closetController.getClothes,
   (req, res) => {
-    console.log(res.locals.clothes);
+    // console.log(res.locals.clothes);
     res.json(res.locals.clothes);
   }
 );
@@ -35,8 +34,7 @@ router.delete(
   }
 );
 
-//updates an item from the closet using the id
-// tested and works in postman
+//updates an item
 router.patch('/updateItem', closetController.updateClosetItem, (req, res) => {
   res.send('happy stuff');
 });

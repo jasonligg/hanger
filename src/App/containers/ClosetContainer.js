@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { ClosetContext } from '../Store/ClosetContext';
+import { UserContext } from '../Store/UserContext';
 import NewItem from '../components/NewItem';
 import Closet from '../components/Closet';
 
@@ -24,12 +25,15 @@ import Closet from '../components/Closet';
   */
 //#endregion
 
+// access ClosetContext for user's closet -->
+
 const ClosetContainer = () => {
+  const [user, setUser] = useContext(UserContext);
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/api')
+    fetch(`/api/closet/${user.verified}`)
       .then((response) => response.json())
       .then((data) => {
         setCloset(data);
@@ -41,7 +45,7 @@ const ClosetContainer = () => {
   return hasLoaded ? (
     <div className="content-container">
       <Router>
-        <div className='content-nav'>
+        <div className="content-nav">
           <Link to="/closet">My Closet</Link>
           <Link to="/newitem">Add Item</Link>
         </div>
@@ -54,16 +58,14 @@ const ClosetContainer = () => {
             <Closet tableData={closet} />
           </Route>
           <Route path="/">
-            <div>
               <h1>HANGER</h1>
-            </div>
           </Route>
         </Switch>
       </Router>
     </div>
   ) : (
     <div className="content-container">
-      <p>Still loading...</p>
+      <h1>Still loading...</h1>
     </div>
   );
 };

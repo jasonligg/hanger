@@ -115,5 +115,7 @@ Thumbs.db
 # bundle.js file
 bundle.js
 
+#vscode setting
+.vscode
 # keys.js file
 keys.js
