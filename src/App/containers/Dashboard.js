@@ -13,7 +13,15 @@ import { UserContext } from '../Store/UserContext';
 const Dashboard = () => {
   const [user] = useContext(UserContext);
 
-  return user ? (
+  // useEffect(async () => {
+  //   const approveUser = await fetch('/access');
+  //   console.log(approveUser);
+  //   return () => {
+  //     console.log('unmount');
+  //   };
+  // }, []);
+
+  return (
     <Router>
       <div className="dashboard">
         <Nav />
@@ -25,8 +33,6 @@ const Dashboard = () => {
         </Switch>
       </div>
     </Router>
-  ) : (
-    <Login />
   );
 };
 

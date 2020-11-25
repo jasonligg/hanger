@@ -4,11 +4,12 @@ import { UserContext } from '../Store/UserContext';
 
 const UserContainer = () => {
   const [user] = useContext(UserContext);
-  const { nickName, birthday, gender, interests } = user;
+  // const { nickName, birthday, gender, interests } = user;
   console.log(user);
   return (
     <div className="user-container">
-      <h1>{`Hey ${nickName}!`}</h1>
+      <h1>USER</h1>
+      {/* <h1>{`Hey ${nickName}!`}</h1>
       <div id="temp">
         <p>profile-pic</p>
       </div>
@@ -16,7 +17,7 @@ const UserContainer = () => {
       <h2>Profile:</h2>
       <p>{gender}</p>
       <p>{`birthday: ${birthday.month}/${birthday.day}/${birthday.year}`}</p>
-      <p>{interests}</p>
+      <p>{interests}</p> */}
     </div>
   );
 };

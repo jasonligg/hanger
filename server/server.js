@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const closetController = require('../controllers/closetController.js');
 const closetRouter = require('../routes/closet.js');
 const authRoutes = require('../routes/oauth-routes.js');
 const passportSetup = require('../config/passport-setup.js');
