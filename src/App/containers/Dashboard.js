@@ -13,6 +13,14 @@ import { UserContext } from '../Store/UserContext';
 const Dashboard = () => {
   const [user] = useContext(UserContext);
 
+  // useEffect(async () => {
+  //   const approveUser = await fetch('/access');
+  //   console.log(approveUser);
+  //   return () => {
+  //     console.log('unmount');
+  //   };
+  // }, []);
+
   return user ? (
     <Router>
       <div className="dashboard">

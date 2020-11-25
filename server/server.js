@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const closetRouter = require('../routes/closet.js');
 const authRoutes = require('../routes/oauth-routes.js');
 const passportSetup = require('../config/passport-setup.js');
@@ -9,8 +8,8 @@ let app = express();
 const keys = require('../config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-//parse request body
-app.use(express.json());
+//parse request body//
+app.use(bodyParser.json());
 
 app.use(
   cookieSession({
@@ -23,17 +22,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
-});
-// if (process.env.NODE_ENV === 'production') {
-//   // statically serve everything in the build folder on the route '/build'
-//   app.use('/build', express.static(path.join(__dirname, '../build')));
-//   // serve index.html on the route '/'
-//   app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  // statically serve everything in the build folder on the route '/build'
+  app.use('/build', express.static(path.join(__dirname, '../build')));
+  // serve index.html on the route '/'
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
+  });
+}
 
 app.use('/auth', authRoutes);
 app.use('/api', closetRouter);

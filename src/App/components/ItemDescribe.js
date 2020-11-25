@@ -51,7 +51,8 @@ const ItemDescribe = ({ item }) => {
 
   return (
     <div className="item-describe">
-      <form onBlur={handleSubmit(onSubmit)}>
+      <form onBlur={handleSubmit(onSubmit)} autoComplete="off">
+        <input autoComplete="false"></input>
         <input type="text" ref={register} name="itemname" />
         <input type="text" ref={register} name="itemclothingtype" />
         <input type="text" ref={register} name="itemcolor" />
