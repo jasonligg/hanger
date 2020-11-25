@@ -4,8 +4,7 @@ const closetController = require('../controllers/closetController.js');
 const userController = require('../controllers/userController.js');
 const router = express.Router();
 
-// Jason: created a new GET endpoint to /closet that queries the database
-// for all entries and returns the result to the response
+//
 // should handle getting all items from the database
 
 // CLOSET ROUTES:

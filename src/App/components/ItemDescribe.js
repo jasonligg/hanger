@@ -10,12 +10,6 @@ const ItemDescribe = ({ item }) => {
     defaultValues: item,
   });
 
-  useEffect(() => {
-    console.log('itemData change');
-    return () => {
-      console.log('itemdata dismount--->');
-    };
-  }, [itemData]);
 // 'api/delete/id'
   useEffect(() => {
     console.log('component did mounted');
@@ -36,7 +30,7 @@ const ItemDescribe = ({ item }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const { itemname, itemclothingtype, itemcolor, status } = data;
+    const { itemname, itemclothingtype, itemcolor, donation_status } = data;
     // worn true or false ?
     const update = {
       ...item,
@@ -44,7 +38,7 @@ const ItemDescribe = ({ item }) => {
       itemclothingtype,
       itemcolor,
       worn,
-      status: status == '0' ? 'inactive' : 'active',
+      donation_status: donation_status == '0' ? 'inactive' : 'active',
     };
 
     setItemData(update);
@@ -60,12 +54,16 @@ const ItemDescribe = ({ item }) => {
         <input
           type="range"
           ref={register}
-          name="status"
+          name="donation_status"
           min="0"
           max="10"
           step="10"
         />
-        <input type="" ref={register} name="last_worn" />
+        <div>
+          <label htmlFor="worn">worn recently?</label>
+          <input type="checkbox" ref={register} name="worn" value="true"/>
+        </div>
+       
       </form>
     </div>
   );
