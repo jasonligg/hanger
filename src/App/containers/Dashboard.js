@@ -12,9 +12,11 @@ import { UserContext } from '../Store/UserContext';
 
 const Dashboard = () => {
   const [user] = useContext(UserContext);
+  console.log(user);
 
+  // fetch --> '/api/user/id
   // useEffect(async () => {
-  //   const approveUser = await fetch('/access');
+  //   const approveUser = await fetch(`/api/${user.verified}`);
   //   console.log(approveUser);
   //   return () => {
   //     console.log('unmount');

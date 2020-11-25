@@ -24,12 +24,14 @@ import Closet from '../components/Closet';
   */
 //#endregion
 
+// access ClosetContext for user's closet -->
+
 const ClosetContainer = () => {
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
   const num = 12;
   useEffect(() => {
-    fetch(`/api/${num}`)
+    fetch(`/api/closet/${user.verified}`)
       .then((response) => response.json())
       .then((data) => {
         setCloset(data);

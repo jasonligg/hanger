@@ -76,4 +76,8 @@ userController.userLogin = async (req, res, next) => {
   }
 };
 
+userController.getUser = async (req, res, next) => {
+  const userId = req.params.id;
+}
+
 module.exports = userController;

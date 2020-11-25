@@ -9,10 +9,10 @@ const router = express.Router();
 // should handle getting all items from the database
 
 // CLOSET ROUTES:
-router.get('/:id', closetController.getClothes, (req, res) => {
+router.get('/closet/:id', closetController.getClothes, (req, res) => {
   res.json(res.locals.clothes);
 });
-
+//  { user: res.locals.user, clothes: res.locals.clothes }
 //should handle entering clothing items into database
 router.post(
   '/',
@@ -30,8 +30,8 @@ router.delete('/', closetController.deleteClothingItem, (req, res) => {
   res.json(res.locals.clothes);
 });
 
-//updates an item from the closet using the id
-router.patch('/', closetController.updateClosetItem, (req, res) => {
+//updates an item 
+router.patch('/updateItem', closetController.updateClosetItem, (req, res) => {
   res.send('happy stuff');
 });
 
@@ -55,5 +55,9 @@ router.post('/signup', userController.addUser, (req, res) => {
 router.post('/login', userController.userLogin, (req, res) => {
   res.send('Successfully logged in');
 });
+
+router.get('/user/:id', userController.getUser (req, res) => {
+  res.json(res.locals.user);
+})
 
 module.exports = router;

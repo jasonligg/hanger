@@ -60,9 +60,12 @@ closetController.getClothes = async (req, res, next) => {
 // updates how many times an item has been worn and date of last wear
 // id of item is passed through as key/value on request body
 closetController.updateClosetItem = async (req, res, next) => {
-  const id = req.body._id;
+  // worn will be true or false 
+  const worn = req.body.worn;
+  const { _id, itemName, itemclothingtype, itemcolor } = req.body; 
+  
   const firstQuery = 'SELECT times_worn FROM Closet WHERE _id = $1';
-
+ // if true: 
   try {
     const data = await db.query(firstQuery, [id]);
     let { times_worn } = data.rows[0];

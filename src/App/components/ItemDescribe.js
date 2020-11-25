@@ -37,13 +37,14 @@ const ItemDescribe = ({ item }) => {
   const onSubmit = (data) => {
     console.log(data);
     const { itemname, itemclothingtype, itemcolor, status } = data;
+    // worn true or false ?
     const update = {
       ...item,
       itemname,
       itemclothingtype,
       itemcolor,
-      status,
-      last_worn,
+      worn,
+      status: status == '0' ? 'inactive' : 'active',
     };
 
     setItemData(update);
@@ -64,7 +65,7 @@ const ItemDescribe = ({ item }) => {
           max="10"
           step="10"
         />
-        <input type="date" ref={register} name="last_worn" />
+        <input type="" ref={register} name="last_worn" />
       </form>
     </div>
   );
