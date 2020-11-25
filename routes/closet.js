@@ -4,14 +4,14 @@ const closetController = require('../controllers/closetController.js');
 const userController = require('../controllers/userController.js');
 const router = express.Router();
 
-// Jason: created a new GET endpoint to /closet that queries the database
-// for all entries and returns the result to the response
+//
 // should handle getting all items from the database
 
 // CLOSET ROUTES:
-router.get('/', closetController.getClothes, (req, res) => {
+router.get('/closet/:id', closetController.getClothes, (req, res) => {
   res.json(res.locals.clothes);
 });
+
 
 //should handle entering clothing items into database
 router.post(
@@ -19,19 +19,19 @@ router.post(
   closetController.newClothingItem,
   closetController.getClothes,
   (req, res) => {
-    console.log(res.locals.clothes);
+    // console.log(res.locals.clothes);
     res.json(res.locals.clothes);
   }
 );
 
 // should delete and update also get clothes??
 //deletes an item from the closet using the id
-router.delete('/', closetController.deleteClothingItem, (req, res) => {
+router.delete('/delete/:id', closetController.deleteClothingItem, (req, res) => {
   res.json(res.locals.clothes);
 });
 
-//updates an item from the closet using the id
-router.patch('/', closetController.updateClosetItem, (req, res) => {
+//updates an item 
+router.patch('/updateItem', closetController.updateClosetItem, (req, res) => {
   res.send('happy stuff');
 });
 
@@ -41,7 +41,7 @@ router.get('/marketplace', closetController.getMarketplaceItems, (req, res) => {
 });
 
 // donation status
-router.post('/donation', closetController.donationStatusUpdate, (req, res) => {
+router.post('/donation/:id', closetController.donationStatusUpdate, (req, res) => {
   res.json(res.locals.clothes);
 });
 
@@ -55,5 +55,9 @@ router.post('/signup', userController.addUser, (req, res) => {
 router.post('/login', userController.userLogin, (req, res) => {
   res.send('Successfully logged in');
 });
+
+router.get('/user/:id', userController.getUser, (req, res) => {
+  res.json(res.locals.user);
+})
 
 module.exports = router;

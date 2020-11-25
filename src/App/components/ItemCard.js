@@ -8,13 +8,6 @@ const ItemCard = ({ id, item }) => {
   const [sticky, setSticky] = useState(false);
   const { itemimage } = item;
 
-  useEffect(() => {
-    console.log('mount');
-    return () => {
-      console.log('dismount');
-    };
-  }, []);
-
   return (
     <div
       className="item-card"

@@ -10,13 +10,7 @@ const ItemDescribe = ({ item }) => {
     defaultValues: item,
   });
 
-  useEffect(() => {
-    console.log('itemData change');
-    return () => {
-      console.log('itemdata dismount--->');
-    };
-  }, [itemData]);
-
+// 'api/delete/id'
   useEffect(() => {
     console.log('component did mounted');
     return () => {
@@ -36,14 +30,15 @@ const ItemDescribe = ({ item }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const { itemname, itemclothingtype, itemcolor, status } = data;
+    const { itemname, itemclothingtype, itemcolor, donation_status } = data;
+    // worn true or false ?
     const update = {
       ...item,
       itemname,
       itemclothingtype,
       itemcolor,
-      status,
-      last_worn,
+      worn,
+      donation_status: donation_status == '0' ? 'inactive' : 'active',
     };
 
     setItemData(update);
@@ -51,19 +46,24 @@ const ItemDescribe = ({ item }) => {
 
   return (
     <div className="item-describe">
-      <form onBlur={handleSubmit(onSubmit)}>
+      <form onBlur={handleSubmit(onSubmit)} autoComplete="off">
+        <input autoComplete="false"></input>
         <input type="text" ref={register} name="itemname" />
         <input type="text" ref={register} name="itemclothingtype" />
         <input type="text" ref={register} name="itemcolor" />
         <input
           type="range"
           ref={register}
-          name="status"
+          name="donation_status"
           min="0"
           max="10"
           step="10"
         />
-        <input type="date" ref={register} name="last_worn" />
+        <div>
+          <label htmlFor="worn">worn recently?</label>
+          <input type="checkbox" ref={register} name="worn" value="true"/>
+        </div>
+       
       </form>
     </div>
   );

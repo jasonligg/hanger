@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import UserContainer from './UserContainer';
 import MarketplaceContainer from './MarketplaceContainer';
@@ -11,17 +11,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserContext } from '../Store/UserContext';
 
 const Dashboard = () => {
-  const [user] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
+  const id = user ? user.verified : null;
 
-  // useEffect(async () => {
-  //   const approveUser = await fetch('/access');
-  //   console.log(approveUser);
-  //   return () => {
-  //     console.log('unmount');
-  //   };
-  // }, []);
+  console.log('user id', user ? user.verified : 'none');
 
-  return (
+  return id ? (
     <Router>
       <div className="dashboard">
         <Nav />
@@ -33,6 +28,8 @@ const Dashboard = () => {
         </Switch>
       </div>
     </Router>
+  ) : (
+    <Login />
   );
 };
 

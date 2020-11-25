@@ -1,24 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { UserContext } from '../Store/UserContext';
 
 const UserContainer = () => {
-  const [user] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
+  const [loaded, setLoaded] = useState(false);
+  // const id = user.verified;
   // const { nickName, birthday, gender, interests } = user;
+
+  useEffect(() => {
+    fetch(`/api/user/${user.verified}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUser({ ...user, data })
+        setLoaded(true)
+      })
+      .catch((e) => console.log(e));
+    return () => {
+      console.log('unmount');
+    };
+  }, []);
+
   console.log(user);
-  return (
+  return loaded ? (
     <div className="user-container">
-      <h1>USER</h1>
-      {/* <h1>{`Hey ${nickName}!`}</h1>
-      <div id="temp">
-        <p>profile-pic</p>
+      <h1>{`Hey ${user.data[0].display_name_1}!`}</h1>
+      <div className="profile-pic">
+        <img src={user.data[0].profile_image} />
       </div>
-      <div className="actions"></div>
-      <h2>Profile:</h2>
-      <p>{gender}</p>
-      <p>{`birthday: ${birthday.month}/${birthday.day}/${birthday.year}`}</p>
-      <p>{interests}</p> */}
     </div>
+  ) : (
+    <h1>Loading...</h1>
   );
 };
 
