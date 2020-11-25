@@ -78,18 +78,13 @@ userController.userLogin = async (req, res, next) => {
 
 userController.getUser = async (req, res, next) => {
   const userId = req.params.id;
-<<<<<<< HEAD
   const queryStr = 'SELECT * FROM Users WHERE _id = $1';
-=======
-  const queryStr= 'SELECT * FROM Users WHERE _id = $1';
->>>>>>> 20e0058fa54b3bf184e61c6a9d284c804aa14154
 
   try {
     const data = await db.query(queryStr, [userId]);
     res.locals.user = data.rows;
     return next();
   } catch (error) {
-<<<<<<< HEAD
     return next({
       log: `Database error`,
       status: 502,
@@ -97,10 +92,5 @@ userController.getUser = async (req, res, next) => {
     });
   }
 };
-=======
-    console.log("error in getUser", error)
-  }
-}
->>>>>>> 20e0058fa54b3bf184e61c6a9d284c804aa14154
 
 module.exports = userController;
