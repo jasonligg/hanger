@@ -21,7 +21,7 @@ const Dashboard = () => {
   //   };
   // }, []);
 
-  return user ? (
+  return (
     <Router>
       <div className="dashboard">
         <Nav />
@@ -33,8 +33,6 @@ const Dashboard = () => {
         </Switch>
       </div>
     </Router>
-  ) : (
-    <Login />
   );
 };
 
