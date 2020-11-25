@@ -5,6 +5,17 @@ import { UserContext } from '../Store/UserContext';
 const UserContainer = () => {
   const [user] = useContext(UserContext);
   // const { nickName, birthday, gender, interests } = user;
+
+    // useEffect(() => {
+  //   if (loggedIn) {
+  //     fetch(`/api/user/${id}`)
+  //       .then((response) => response.json())
+  //       .then((data) => setUser(data));
+  //   }
+  //   return () => {
+  //     console.log('unmount');
+  //   };
+  // }, [loggedIn]);
   console.log(user);
   return (
     <div className="user-container">

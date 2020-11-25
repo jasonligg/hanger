@@ -12,21 +12,22 @@ const router = express.Router();
 router.get('/closet/:id', closetController.getClothes, (req, res) => {
   res.json(res.locals.clothes);
 });
-//  { user: res.locals.user, clothes: res.locals.clothes }
+
+
 //should handle entering clothing items into database
 router.post(
   '/',
   closetController.newClothingItem,
   closetController.getClothes,
   (req, res) => {
-    console.log(res.locals.clothes);
+    // console.log(res.locals.clothes);
     res.json(res.locals.clothes);
   }
 );
 
 // should delete and update also get clothes??
 //deletes an item from the closet using the id
-router.delete('/', closetController.deleteClothingItem, (req, res) => {
+router.delete('/delete/:id', closetController.deleteClothingItem, (req, res) => {
   res.json(res.locals.clothes);
 });
 
@@ -41,7 +42,7 @@ router.get('/marketplace', closetController.getMarketplaceItems, (req, res) => {
 });
 
 // donation status
-router.post('/donation', closetController.donationStatusUpdate, (req, res) => {
+router.post('/donation/:id', closetController.donationStatusUpdate, (req, res) => {
   res.json(res.locals.clothes);
 });
 
@@ -56,7 +57,7 @@ router.post('/login', userController.userLogin, (req, res) => {
   res.send('Successfully logged in');
 });
 
-router.get('/user/:id', userController.getUser (req, res) => {
+router.get('/user/:id', userController.getUser, (req, res) => {
   res.json(res.locals.user);
 })
 

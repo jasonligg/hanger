@@ -43,8 +43,7 @@ closetController.newClothingItem = async (req, res, next) => {
 
 // retrieves all clothes from Clothes table
 closetController.getClothes = async (req, res, next) => {
-  // would this be req.params??
-  // const userId = req.params._id;
+  // const userId = req.params.id;
   // const queryStr =
   //   'SELECT u._id, c.* FROM Users u LEFT OUTER JOIN Closet c ON c.user_id = ($1)';
   const queryStr = 'SELECT * FROM Closet ORDER BY _id ASC';
@@ -62,10 +61,11 @@ closetController.getClothes = async (req, res, next) => {
 closetController.updateClosetItem = async (req, res, next) => {
   // worn will be true or false 
   const worn = req.body.worn;
-  const { _id, itemName, itemclothingtype, itemcolor } = req.body; 
-  
+  const { id, itemname, itemclothingtype, itemcolor } = req.body; 
+
   const firstQuery = 'SELECT times_worn FROM Closet WHERE _id = $1';
- // if true: 
+ // if worn is true:
+ if (worn) { 
   try {
     const data = await db.query(firstQuery, [id]);
     let { times_worn } = data.rows[0];
@@ -73,8 +73,8 @@ closetController.updateClosetItem = async (req, res, next) => {
     const todaysDate = new Date();
 
     const queryStr =
-      'UPDATE Closet SET last_worn = $1, times_worn = $2 WHERE _id= $3';
-    const queryParams = [todaysDate, times_worn, id];
+      'UPDATE Closet SET itemname = $1, itemclothingtype = $2, itemcolor = $3, last_worn = $4, times_worn = $5 WHERE _id= $6';
+    const queryParams = [itemname, itemclothingtype, itemcolor, todaysDate, times_worn, id];
     await db.query(queryStr, queryParams);
     return next();
   } catch (error) {
@@ -84,12 +84,13 @@ closetController.updateClosetItem = async (req, res, next) => {
       message: { err: `${error.stack}` },
     });
   }
+}
 };
 
 // removes a piece of clothing from the Closet table
 // request body includes key/value of clothing item id
 closetController.deleteClothingItem = async (req, res, next) => {
-  const id = req.body._id;
+  const id = req.params.id;
 
   // query string is to delete item from closet table where id matches passed in id
   const queryStr = 'DELETE FROM Closet WHERE _id = $1';
@@ -110,7 +111,7 @@ closetController.deleteClothingItem = async (req, res, next) => {
 // update donation status in closet table
 // select donation_status matching clothing item _id
 closetController.donationStatusUpdate = async (req, res, next) => {
-  const id = req.body._id;
+  const id = req.params.id;
   const firstQuery = 'SELECT donation_status FROM Closet WHERE _id = $1';
 
   try {

@@ -16,7 +16,7 @@ const ItemDescribe = ({ item }) => {
       console.log('itemdata dismount--->');
     };
   }, [itemData]);
-
+// 'api/delete/id'
   useEffect(() => {
     console.log('component did mounted');
     return () => {
