@@ -10,7 +10,7 @@ const ItemDescribe = ({ item }) => {
     defaultValues: item,
   });
 
-// 'api/delete/id'
+  // 'api/delete/id'
   useEffect(() => {
     console.log('component did mounted');
     return () => {
@@ -30,7 +30,13 @@ const ItemDescribe = ({ item }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const { itemname, itemclothingtype, itemcolor, donation_status } = data;
+    const {
+      itemname,
+      itemclothingtype,
+      itemcolor,
+      donation_status,
+      worn,
+    } = data;
     // worn true or false ?
     const update = {
       ...item,
@@ -61,9 +67,8 @@ const ItemDescribe = ({ item }) => {
         />
         <div>
           <label htmlFor="worn">worn recently?</label>
-          <input type="checkbox" ref={register} name="worn" value="true"/>
+          <input type="checkbox" ref={register} name="worn" value="true" />
         </div>
-       
       </form>
     </div>
   );
