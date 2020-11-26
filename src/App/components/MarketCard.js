@@ -3,7 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import MarketDescribe from './MarketDescribe';
 import ItemView from './ItemView';
 
-const marketCard = ({ id, item }) => {
+/*
+MarketCard is the whole component that holds the information for 
+each item in the Market
+*/
+
+const MarketCard = ({ id, item }) => {
   const [visible, setVisibility] = useState(false);
   const [sticky, setSticky] = useState(false);
   const { itemimage } = item;
@@ -24,4 +29,4 @@ const marketCard = ({ id, item }) => {
   );
 };
 
-export default marketCard;
+export default MarketCard;

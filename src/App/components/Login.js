@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+No formatting, needs help and guidance and love
+*/
+
 const Login = () => (
   <div>
     <h1> HI LOGIN WITH GOOGY or FACEBOOK</h1>

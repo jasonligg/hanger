@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 
 import ItemDescribe from './ItemDescribe';
 import ItemView from './ItemView';
+
+/*
+Renders the container component for each Card
+*/
 
 const ItemCard = ({ id, item }) => {
   const [visible, setVisibility] = useState(false);

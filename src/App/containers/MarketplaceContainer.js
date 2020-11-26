@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Market from '../components/Market';
 
+/*
+MarketplaceContainer is the top-level component that holds
+all of the components at the endpoint '/marketplace'
+
+we make a fetch request to our backend to receive 
+all of the items inside of the user's closet
+
+We pass the data to a single component 'Market'
+*/
+
+
 const MarketplaceContainer = () => {
   const [market, setMarkets] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  /*upon component mount, make fetch request to get all clothes that don't belong to user 
-  which are marked as available*/
   useEffect(() => {
     fetch('/api/marketplace')
       .then((response) => response.json())
@@ -14,7 +23,6 @@ const MarketplaceContainer = () => {
         setMarkets(data);
         setHasLoaded(true);
       })
-      //catch all other errors
       .catch((error) => console.log(error));
   }, []);
 

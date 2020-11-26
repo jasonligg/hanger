@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-// import { ItemContext } from '../Store/ItemContext';
+/*
+The back of each Market Card, has been neglected
+is in need of item description, and a button to msg the user
+*/
 
 const MarketDescribe = ({ item }) => {
   return (

@@ -3,6 +3,14 @@ import { useForm } from 'react-hook-form';
 
 import { ItemContext } from '../Store/ItemContext';
 
+/*
+References the ItemContext for a default state
+Forms created with 'react-hook-form' module
+This was never linked wtih the backend
+It is set up to fetch upon dismount which
+may or may not fire too many times 
+*/
+
 const ItemDescribe = ({ item }) => {
   const [itemData, setItemData] = useContext(ItemContext);
   const { register, handleSubmit } = useForm({

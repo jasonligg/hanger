@@ -1,8 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+/*
+Our Primary Nav bar uses React Router,
+*/
 
 const Nav = () => {
-  //#region old
   return (
     <div className="nav">
       <Link to="/">
