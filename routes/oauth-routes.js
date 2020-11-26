@@ -40,6 +40,7 @@ router.get(
   passport.authenticate('google', {
     scope: ['profile', 'email'],
   })
+  
 );
 
 //auth logout
