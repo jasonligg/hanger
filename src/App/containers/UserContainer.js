@@ -2,11 +2,18 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import { UserContext } from '../Store/UserContext';
 
+/*
+UserContainer is the wrapper that holds the user's profile data... 
+includes Profile Picture and name
+
+Here we make a fetch to our Server with the ID we received 
+as a cookie which will return all of the user's information
+that was saved in our database.
+*/
+
 const UserContainer = () => {
   const [user, setUser] = useContext(UserContext);
   const [loaded, setLoaded] = useState(false);
-  // const id = user.verified;
-  // const { nickName, birthday, gender, interests } = user;
 
   useEffect(() => {
     fetch(`/api/user/${user.verified}`)
@@ -21,7 +28,6 @@ const UserContainer = () => {
     };
   }, []);
 
-  console.log(user);
   return loaded ? (
     <div className="user-container">
       <h1>{`Hey ${user.data[0].display_name_1}!`}</h1>

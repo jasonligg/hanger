@@ -6,29 +6,19 @@ import { UserContext } from '../Store/UserContext';
 import NewItem from '../components/NewItem';
 import Closet from '../components/Closet';
 
-//  #region useEffect && fetch() comments
 /*
-  invoke useEffect and make a fetch request to our backend endpoint
-  to retrieve the table data and store it in state. this useEffect
-  should only trigger once (and not each time the page re-renders
-  (a la componentDidMount))
+  ClosetContainer is the top-level component that holds all of
+  the data from a user's closet
 
-  NewItem does not need any props passed down to it
-  pass down the appropriate props to the tableDisplay component
+  We access the UserContext in order to make a fetch request to the backend.
+  We save our response to the global state of ClosetContext
 
-  not sure on this part...
-  create a custom hook (useFetch) to pass down as a prop to NewItem
-  (EDIT: or maybe define in separate file and import)
-  this will allow NewItem to trigger the useEffect hook in here
-  to re-fetch the latest data from the backend, which will then update
-  and re-render the TableDisplay component
-  */
-//#endregion
-
-// access ClosetContext for user's closet -->
+  The component passes the data to a single component with optional paths
+  default to closet, but the user is also allowed ot add items into their closet
+*/
 
 const ClosetContainer = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -55,10 +45,7 @@ const ClosetContainer = () => {
             <NewItem />
           </Route>
           <Route path="/closet">
-            <Closet tableData={closet} />
-          </Route>
-          <Route path="/">
-              <h1>HANGER</h1>
+            <Closet closetData={closet} />
           </Route>
         </Switch>
       </Router>

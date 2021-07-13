@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-//#region comments
-// when updating state, we are putting into the userInput state object
-// key-value pairs. the four pairs are:
-// itemName: String -> user types into texbar
-// itemClothingType: String  -> user selects from dropdown bar
-// itemColor: String -> user selects from dropdown bar
-// itemImage: File API integration -> user selects from file from device storage
-//#endregion
+
+/*
+unaddressed, needs reformating, could be refactored with react-hook-form
+
+notes from first phase:
+when updating state, we are putting into the userInput state object
+key-value pairs. the four pairs are:
+itemName: String -> user types into texbar
+itemClothingType: String  -> user selects from dropdown bar
+itemColor: String -> user selects from dropdown bar
+itemImage: File API integration -> user selects from file from device storage
+*/
+
 
 const NewItem = () => {
   const initialState = {
@@ -22,9 +27,6 @@ const NewItem = () => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data, '<---- data');
-  // const onSubmit = () => {
-
-  // }
 
   // const handleSubmit = async () => {
   //   try {

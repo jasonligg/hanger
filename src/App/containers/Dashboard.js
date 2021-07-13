@@ -10,11 +10,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { UserContext } from '../Store/UserContext';
 
-const Dashboard = () => {
-  const [user, setUser] = useContext(UserContext);
-  const id = user ? user.verified : null;
+/*
+Our Dashboard is the view a user would see upon authentication
+It checks our global state to see if the user has a property of verified
+the value at this property would be the users id within the database.
 
-  console.log('user id', user ? user.verified : 'none');
+if this id is successfully retrieved we weill render the dashboard,
+if not, the application will be directed to our Login component
+*/
+
+const Dashboard = () => {
+  const [user] = useContext(UserContext);
+  const id = user ? user.verified : null;
 
   return id ? (
     <Router>

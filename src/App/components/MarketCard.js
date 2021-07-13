@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-import ItemDescribe from './ItemDescribe';
+import MarketDescribe from './MarketDescribe';
 import ItemView from './ItemView';
 
 /*
-Renders the container component for each Card
+MarketCard is the whole component that holds the information for 
+each item in the Market
 */
 
-const ItemCard = ({ id, item }) => {
+const MarketCard = ({ id, item }) => {
   const [visible, setVisibility] = useState(false);
   const [sticky, setSticky] = useState(false);
   const { itemimage } = item;
@@ -20,12 +21,12 @@ const ItemCard = ({ id, item }) => {
       onClick={() => setSticky(!sticky)}
     >
       {visible || sticky ? (
-        <ItemDescribe item={item} id={id} />
+        <MarketDescribe item={item} id={id} />
       ) : (
-        <ItemView image={itemimage} id={id} />
+        <ItemView id={id} image={itemimage} />
       )}
     </div>
   );
 };
 
-export default ItemCard;
+export default MarketCard;

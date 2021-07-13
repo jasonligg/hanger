@@ -3,6 +3,14 @@ import { useForm } from 'react-hook-form';
 
 import { ItemContext } from '../Store/ItemContext';
 
+/*
+References the ItemContext for a default state
+Forms created with 'react-hook-form' module
+This was never linked wtih the backend
+It is set up to fetch upon dismount which
+may or may not fire too many times 
+*/
+
 const ItemDescribe = ({ item }) => {
   const [itemData, setItemData] = useContext(ItemContext);
   const { register, handleSubmit } = useForm({
@@ -10,7 +18,7 @@ const ItemDescribe = ({ item }) => {
     defaultValues: item,
   });
 
-// 'api/delete/id'
+  // 'api/delete/id'
   useEffect(() => {
     console.log('component did mounted');
     return () => {
@@ -30,7 +38,13 @@ const ItemDescribe = ({ item }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const { itemname, itemclothingtype, itemcolor, donation_status } = data;
+    const {
+      itemname,
+      itemclothingtype,
+      itemcolor,
+      donation_status,
+      worn,
+    } = data;
     // worn true or false ?
     const update = {
       ...item,
@@ -61,9 +75,8 @@ const ItemDescribe = ({ item }) => {
         />
         <div>
           <label htmlFor="worn">worn recently?</label>
-          <input type="checkbox" ref={register} name="worn" value="true"/>
+          <input type="checkbox" ref={register} name="worn" value="true" />
         </div>
-       
       </form>
     </div>
   );

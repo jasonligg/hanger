@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import ItemCard from './ItemCard';
+import MarketCard from './MarketCard';
 
-const Market = () => {
-  const demo = [];
-  for (let i = 0; i < 15; i += 1) {
-    demo.push(<ItemCard />);
-  }
+/*
+Iterates through marketData and returns MarketCard components 
+for each item. 
 
-  return <div className="closet">{demo}</div>;
+This component is a little too abstracted, but it leaves room for scaling
+*/
+
+const Market = ({ marketData }) => {
+  const cards = marketData.map((item, i) => (
+    <MarketCard key={`mkItem${i}`} id={item._id} item={item} />
+  ));
+  return <div className="closet">{cards}</div>;
 };
 
 export default Market;

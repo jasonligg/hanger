@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+/*
+Renders the image side of the image card
+*/
 
 const ItemView = ({ image }) => {
   return (
