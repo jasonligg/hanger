@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const { route } = require('./closet');
 const router = express.Router();
 const passport = require('passport');
@@ -8,7 +7,7 @@ const passport = require('passport');
 //auth login
 router.get('/login', (req, res) => {
   //here is where we serve up our login page
-  res.send('');
+  res.redirect('/');
 });
 
 //auth with google
@@ -40,14 +39,13 @@ router.get(
   passport.authenticate('google', {
     scope: ['profile', 'email'],
   })
-  
 );
 
 //auth logout
 router.get('/logout', (req, res) => {
   //this will be handled later with passport
   req.logout();
-
+  res.clearCookie('success');
   res.redirect('/');
 });
 
@@ -71,7 +69,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // res.redirect(`/api/${user}`);
   // res.json(user);
   res.cookie('success', user);
-  res.redirect('/');
+  return res.redirect('/');
 
   //router needs to route to where we want to render
   //if the route is to a username as the endpoint, write a function that renders an html page with everything for their closet

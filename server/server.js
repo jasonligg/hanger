@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const closetRouter = require('../routes/closet.js');
 const authRoutes = require('../routes/oauth-routes.js');
 const passportSetup = require('../config/passport-setup.js');
@@ -9,7 +8,7 @@ const keys = require('../config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 //parse request body//
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(
   cookieSession({

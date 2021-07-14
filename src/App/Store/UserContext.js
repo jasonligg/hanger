@@ -15,6 +15,7 @@ export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
+  console.log('user: ', user);
   const [cookies, setCookie] = useCookies();
 
   useEffect(() => {

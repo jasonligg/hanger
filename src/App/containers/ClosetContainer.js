@@ -5,7 +5,7 @@ import { ClosetContext } from '../Store/ClosetContext';
 import { UserContext } from '../Store/UserContext';
 import NewItem from '../components/NewItem';
 import Closet from '../components/Closet';
-
+import { Typography, Box, Button, makeStyles } from '@material-ui/core';
 /*
   ClosetContainer is the top-level component that holds all of
   the data from a user's closet
@@ -16,12 +16,22 @@ import Closet from '../components/Closet';
   The component passes the data to a single component with optional paths
   default to closet, but the user is also allowed ot add items into their closet
 */
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      background: '#FF8E53',
+      color: 'white',
+    },
+  },
+}));
 
 const ClosetContainer = () => {
+  const classes = useStyles();
+
   const [user] = useContext(UserContext);
   const [closet, setCloset] = useContext(ClosetContext);
   const [hasLoaded, setHasLoaded] = useState(false);
-
   useEffect(() => {
     fetch(`/api/closet/${user.verified}`)
       .then((response) => response.json())
@@ -36,8 +46,24 @@ const ClosetContainer = () => {
     <div className="content-container">
       <Router>
         <div className="content-nav">
-          <Link to="/closet">My Closet</Link>
-          <Link to="/newitem">Add Item</Link>
+          <div className={classes.root}>
+            <Button
+              classes=".MuiButton-containedPrimary"
+              variant="contained"
+              color="inherit"
+            >
+              <Link to="/closet">Show Closet</Link>
+            </Button>
+          </div>
+          <div className={classes.root}>
+            <Button
+              classes=".MuiButton-containedPrimary"
+              variant="contained"
+              color="inherit"
+            >
+              <Link to="/newitem">Add Item</Link>
+            </Button>
+          </div>
         </div>
 
         <Switch>

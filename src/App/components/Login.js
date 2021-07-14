@@ -1,15 +1,25 @@
 import React from 'react';
+import GoogleButton from 'react-google-button';
 
 /*
 No formatting, needs help and guidance and love
 */
-
 const Login = () => (
-  <div>
-    <h1> HI LOGIN WITH GOOGY or FACEBOOK</h1>
-    <a href="/auth/google">google</a>
+  <div id="landing">
+    <img
+      id="logo"
+      src="https://res.cloudinary.com/dfu8r9blo/image/upload/v1606164894/HangerImages/HangerTextLogo_qnxaho.png"
+      alt="hangerLogo"
+    />
+    <h1 id="subheading">A new way to clean your closet</h1>
+    {/* <a href="/auth/google">google</a> */}
+    <div id="google">
+      <a href="/auth/google">
+        <GoogleButton type="light" />
+      </a>
+    </div>
     <br />
-    <a href="/auth/facebook">facebook</a>
+    {/* <a href="/auth/facebook">facebook</a> */}
   </div>
 );
 

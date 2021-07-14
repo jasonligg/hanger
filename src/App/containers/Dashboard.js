@@ -3,11 +3,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import UserContainer from './UserContainer';
 import MarketplaceContainer from './MarketplaceContainer';
 import ClosetContainer from './ClosetContainer';
-import Logout from '../components/Logout';
+// import Logout from '../components/Logout';
 import Login from '../components/Login';
 import Nav from '../components/Nav';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import { UserContext } from '../Store/UserContext';
 
 /*
@@ -22,17 +21,15 @@ if not, the application will be directed to our Login component
 const Dashboard = () => {
   const [user] = useContext(UserContext);
   const id = user ? user.verified : null;
-
   return id ? (
     <Router>
       <div className="dashboard">
         <Nav />
         <UserContainer />
-        <Switch>
-          <Route path="/closet" component={ClosetContainer} />
-          <Route path="/marketplace" component={MarketplaceContainer} />
-          <Route path="/logout" component={Logout} />
-        </Switch>
+        {/* <Switch> */}
+        <ClosetContainer />
+        {/* <Route path="/marketplace" component={MarketplaceContainer} /> */}
+        {/* </Switch> */}
       </div>
     </Router>
   ) : (

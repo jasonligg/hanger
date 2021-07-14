@@ -1,20 +1,18 @@
 const path = require('path');
 
-const config = {
+module.exports = {
   entry: './src/App/index.js',
   output: {
-    path: path.resolve(`${__dirname}/build`),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
   devServer: {
     proxy: {
       '/api': 'http://localhost:3000/',
-      // '/signup': 'http://localhost:3000/',
-      // '/login': 'http://localhost:3000/',
-      // '/authorized': 'http://localhost:3000/',
+      '/auth': 'http://localhost:3000',
     },
-    publicPath: '/',
+    publicPath: '/build/',
   },
   module: {
     rules: [
@@ -41,5 +39,3 @@ const config = {
     hints: false,
   },
 };
-
-module.exports = config;

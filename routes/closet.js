@@ -72,5 +72,10 @@ router.post('/login', userController.userLogin, (req, res) => {
 router.get('/user/:id', userController.getUser, (req, res) => {
   res.json(res.locals.user);
 });
-
+router.get('/logout', (req, res) => {
+  //this will be handled later with passport
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
+});
 module.exports = router;

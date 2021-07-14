@@ -11,7 +11,6 @@ all of the items inside of the user's closet
 We pass the data to a single component 'Market'
 */
 
-
 const MarketplaceContainer = () => {
   const [market, setMarkets] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
