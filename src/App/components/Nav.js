@@ -1,24 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/*
+Our Primary Nav bar uses React Router,
+*/
+
 const Nav = () => {
   return (
-    <div className="navBar">
-      <Link to="/home">
-        <li className="Nav">
-          <span>Home</span>
+    <div className="nav">
+      {/* <Link to="/">
+        <li className="login">
+          <span>Login</span>
         </li>
-      </Link>
+      </Link> */}
+      <img
+        id="navlogo"
+        src="https://res.cloudinary.com/dfu8r9blo/image/upload/v1606164894/HangerImages/HangerTextLogo_qnxaho.png"
+        alt="hangerLogo"
+      />
       <Link to="/closet">
         <li className="Nav">
-          <span>Closet</span>
+          <span className="navHeaders">Closet</span>
         </li>
       </Link>
-      <Link to="/donation">
+      <Link to="/marketplace">
         <li className="Nav">
-          <span>Donation</span>
+          <span className="navHeaders">Marketplace</span>
         </li>
       </Link>
+      <a href="/auth/logout">
+        <li className="Nav">
+          <span className="navHeaders">Logout</span>
+        </li>
+      </a>
     </div>
   );
 };
